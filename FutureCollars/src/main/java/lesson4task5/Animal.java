@@ -1,6 +1,6 @@
 package lesson4task5;
 
-public class Animal {
+public abstract class Animal {
     protected String name;
 
     public Animal(String name) {
