@@ -6,7 +6,7 @@ public class Manager extends BaseEmployee {
     private int bonus;
 
     public Manager(String name, String surname, int employmentYear, int salary) {
-        super(name, surname, employmentYear, salary);
+        super(name, surname, employmentYear, BASE_SALARY);
         this.bonus = BASE_BONUS;
     }
 
