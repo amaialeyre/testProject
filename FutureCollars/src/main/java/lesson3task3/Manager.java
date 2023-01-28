@@ -5,7 +5,7 @@ public class Manager extends BaseEmployee {
     private static final int BASE_BONUS = 500;
     private int bonus;
 
-    public Manager(String name, String surname, int employmentYear, int salary) {
+    public Manager(String name, String surname, int employmentYear) {
         super(name, surname, employmentYear, BASE_SALARY);
         this.bonus = BASE_BONUS;
     }
