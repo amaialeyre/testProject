@@ -1,6 +1,6 @@
 package lesson4task3;
 
-public class Rectangle implements Figures {
+public class Rectangle implements Figure {
     private int sideA;
     private int sideB;
 

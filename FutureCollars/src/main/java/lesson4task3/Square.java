@@ -1,6 +1,6 @@
 package lesson4task3;
 
-public class Square implements Figures {
+public class Square implements Figure {
 
     private int sideA;
 
