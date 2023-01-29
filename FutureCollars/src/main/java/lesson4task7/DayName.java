@@ -9,4 +9,3 @@ public enum DayName {
     SATURDAY,
     SUNDAY
 }
-
