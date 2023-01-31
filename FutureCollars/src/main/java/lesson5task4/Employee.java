@@ -3,8 +3,8 @@ package lesson5task4;
 import java.math.BigDecimal;
 
 public class Employee {
-    private String name;
-    private String surname;
+    private final String name;
+    private final String surname;
     private int age;
     private BigDecimal baseSalary;
     private BigDecimal bonus;
@@ -12,26 +12,22 @@ public class Employee {
     public Employee(String name, String surname) {
         this.name = name;
         this.surname = surname;
+        this.bonus = new BigDecimal(0);
+        this.baseSalary = new BigDecimal(0);
     }
 
     public Employee(String name, String surname, int age) {
-        this.name = name;
-        this.surname = surname;
+        this(name, surname);
         this.age = age;
     }
 
     public Employee(String name, String surname, int age, BigDecimal baseSalary) {
-        this.name = name;
-        this.surname = surname;
-        this.age = age;
+        this(name, surname, age);
         this.baseSalary = baseSalary;
     }
 
     public Employee(String name, int age, BigDecimal baseSalary, BigDecimal bonus, String surname) {
-        this.name = name;
-        this.surname = surname;
-        this.age = age;
-        this.baseSalary = baseSalary;
+        this(name, surname, age, baseSalary);
         this.bonus = bonus;
     }
 
