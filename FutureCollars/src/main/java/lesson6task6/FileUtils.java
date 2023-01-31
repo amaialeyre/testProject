@@ -5,15 +5,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class ConvertToUpperCase {
+public class FileUtils {
 
-    public void readString() {
+    public static void convertToUpperCase(String inputFilePath, String outputFilePath) {
         try {
-            Path path = Paths.get("C:\\Users\\HP\\Desktop\\data.txt");
+            Path path = Paths.get(inputFilePath);
             String content = Files.readString(path);
             String upperCaseContent = content.toUpperCase();
-            Files.writeString(Path.of("C:\\Users\\HP\\Desktop\\output.txt"), upperCaseContent);
-            System.out.println(upperCaseContent);
+            Files.writeString(Path.of(outputFilePath), upperCaseContent);
         } catch (IOException exception) {
             exception.printStackTrace();
         }
