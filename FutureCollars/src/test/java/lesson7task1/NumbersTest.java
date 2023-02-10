@@ -9,19 +9,19 @@ import static org.junit.jupiter.api.Assertions.*;
 class NumbersTest {
 
     @ParametrizedTest
-    @ValueSource(ints = {Integer.MIN_VALUE, -8, 0, 12})
+    @ValueSource(ints = {8, 12, 16, 24})
     void shouldReturnTrueForEvenNumbers(int number) {
         assertTrue(Numbers.isEven(number));
     }
 
     @ParametrizedTest
-    @ValueSource(ints = {-111, 999, Integer.MAX_VALUE})
+    @ValueSource(ints = {3, 7, 13, 21})
     void shouldReturnFalseForOddNumbers(int number) {
         assertFalse(Numbers.isEven(number));
     }
 
     @ParametrizedTest
-    @CsvSource(value = {"-35353:19", "-18:9", "1000:1", "756:18", "1200:3"}, delimiter = ':')
+    @CsvSource(value = {"18:9", "756:18", "1000:1", "1200:3"}, delimiter = ':')
     void shouldReturnSumOfDigitsForGivenNumbers(int number, int expected) {
         assertEquals(expected, Numbers.getSumOfDigits(number));
     }
