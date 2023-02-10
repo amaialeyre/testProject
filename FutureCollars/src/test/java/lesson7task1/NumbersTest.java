@@ -10,19 +10,19 @@ class NumbersTest {
 
     @ParametrizedTest
     @ValueSource(ints = {Integer.MIN_VALUE, -8, 0, 12})
-    void checkIsEven_shouldReturnTrueForEvenNumbers(int number) {
-        assertTrue(Numbers.checkIsEven(number));
+    void shouldReturnTrueForEvenNumbers(int number) {
+        assertTrue(Numbers.isEven(number));
     }
 
     @ParametrizedTest
     @ValueSource(ints = {-111, 999, Integer.MAX_VALUE})
-    void checkIsEven_shouldReturnFalseForOddNumbers(int number) {
-        assertFalse(Numbers.checkIsEven(number));
+    void shouldReturnFalseForOddNumbers(int number) {
+        assertFalse(Numbers.isEven(number));
     }
 
     @ParametrizedTest
     @CsvSource(value = {"-35353:19", "-18:9", "1000:1", "756:18", "1200:3"}, delimiter = ':')
-    void getSumOfDigits_shouldReturnSumOfDigitsForGivenNumbers(int number, int expected) {
+    void shouldReturnSumOfDigitsForGivenNumbers(int number, int expected) {
         assertEquals(expected, Numbers.getSumOfDigits(number));
     }
 }
