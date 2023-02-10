@@ -1,16 +1,15 @@
 package lesson7task8;
 
 public class SalaryCalculator {
-    private BaseSalaryService baseSalaryService;
-    private SaturdaySalaryService saturdaySalaryService;
+    private final BaseSalaryService baseSalaryService;
+    private final SaturdaySalaryService saturdaySalaryService;
 
     public SalaryCalculator(BaseSalaryService baseSalaryService, SaturdaySalaryService saturdaySalaryService) {
         this.baseSalaryService = baseSalaryService;
         this.saturdaySalaryService = saturdaySalaryService;
     }
 
-    public double calculateSalary(String surname, double bonus, int numberOfSaturday) {
-
-        return baseSalaryService.fetchBaseSalary(surname) + bonus + (saturdaySalaryService.fetchSaturdaySalary(surname) * numberOfSaturday);
+    public double calculateSalary(double bonus, int numberOfSaturdays) {
+        return baseSalaryService.fetchBaseSalary() + bonus + (saturdaySalaryService.fetchSaturdaySalary() * numberOfSaturdays);
     }
 }
