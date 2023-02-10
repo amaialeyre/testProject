@@ -1,21 +1,21 @@
 package lesson4task2;
 
 public class Rectangle extends Shape {
-    private double a;
-    private double b;
+    private final double sideA;
+    private final double sideB;
 
-    public Rectangle(double a, double b) {
-        this.a = a;
-        this.b = b;
+    public Rectangle(double sideA, double sideB) {
+        this.sideA = sideA;
+        this.sideB = sideB;
     }
 
     @Override
     public double getArea() {
-        return a * b;
+        return sideA * sideB;
     }
 
     @Override
     public double getPerimeter() {
-        return 2 * a + 2 * b;
+        return 2 * sideA + 2 * sideB;
     }
 }
