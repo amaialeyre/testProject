@@ -10,13 +10,27 @@ import java.util.List;
 public class SumServer {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         ServerSocket serverSocket = new ServerSocket(9999);
-        Socket socket = serverSocket.accept();
-        ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+        while (true) {
+            Socket socket = null;
+            try {
+                socket = serverSocket.accept();
+                ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+                List<Integer> numbers = (List<Integer>) objectInputStream.readObject();
 
-        List<Integer> list = (List<Integer>) objectInputStream.readObject();
-        int sum = list.stream().mapToInt(Integer::intValue).sum();
+                int sum = 0;
+                for (int number : numbers) {
+                    sum += number;
+                }
 
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-        objectOutputStream.writeObject(sum);
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+                objectOutputStream.writeObject(sum);
+            } catch (IOException | ClassNotFoundException e) {
+                System.out.println("Error: " + e.getMessage());
+            } finally {
+                if (socket != null) {
+                    socket.close();
+                }
+            }
+        }
     }
 }
