@@ -6,13 +6,17 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class TextUtils {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         List<String> words = Arrays.asList("Dzisiaj", "jest", "sobota");
 
-        Set<Character> textUtils = words.stream()
-                .map(word -> word.toUpperCase())
+        printUniqueAndUpperCaseLetters(words);
+    }
+
+    private static void printUniqueAndUpperCaseLetters(List<String> words) {
+        words.stream()
+                .map(String::toUpperCase)
                 .flatMap(word -> word.chars().mapToObj(c -> (char) c))
-                .collect(Collectors.toSet());
-        System.out.println(textUtils);
+                .distinct()
+                .forEach(System.out::println);
     }
 }
