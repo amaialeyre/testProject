@@ -3,44 +3,10 @@ package lesson11task2;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Menu {
     public static void main(String[] args) {
-        List<Ingredients> ingredientsOne = Arrays.asList(Ingredients.ONION, Ingredients.MOZZARELLA,
-                Ingredients.TOMATO);
-        List<Ingredients> ingredientsTwo = Arrays.asList(Ingredients.SALAMI, Ingredients.MOZZARELLA,
-                Ingredients.TOMATO);
-        List<Ingredients> ingredientsThree = Arrays.asList(Ingredients.CELERY, Ingredients.MOZZARELLA,
-                Ingredients.TOMATO);
-        List<Ingredients> ingredientsFour = Arrays.asList(Ingredients.ONION, Ingredients.MOZZARELLA,
-                Ingredients.TOMATO, Ingredients.MUSHROOMS);
-        List<Ingredients> ingredientsFive = Arrays.asList(Ingredients.ONION, Ingredients.MOZZARELLA,
-                Ingredients.TOMATO, Ingredients.CELERY);
-        List<Ingredients> ingredientsSix = Arrays.asList(Ingredients.ONION, Ingredients.MOZZARELLA,
-                Ingredients.TOMATO, Ingredients.PEPPERS);
-        List<Ingredients> ingredientsSeven = Arrays.asList(Ingredients.ONION, Ingredients.MOZZARELLA,
-                Ingredients.TOMATO, Ingredients.PEPPERS, Ingredients.MUSHROOMS);
-        List<Ingredients> ingredientsEight = Arrays.asList(Ingredients.SALAMI, Ingredients.MOZZARELLA,
-                Ingredients.TOMATO, Ingredients.PEPPERS);
-        List<Ingredients> ingredientsNine = Arrays.asList(Ingredients.SALAMI, Ingredients.CELERY,
-                Ingredients.TOMATO);
-        List<Ingredients> ingredientsTen = Arrays.asList(Ingredients.MUSHROOMS, Ingredients.MOZZARELLA,
-                Ingredients.TOMATO);
-
-        Pizza pizzaOne = new Pizza(ingredientsOne, true, 550, "pizzaOne");
-        Pizza pizzaTwo = new Pizza(ingredientsTwo, false, 480, "pizzaTwo");
-        Pizza pizzaThree = new Pizza(ingredientsThree, true, 750, "pizzaThree");
-        Pizza pizzaFour = new Pizza(ingredientsFour, true, 620, "pizzaFour");
-        Pizza pizzaFive = new Pizza(ingredientsFive, true, 370, "pizzaFive");
-        Pizza pizzaSix = new Pizza(ingredientsSix, true, 920, "pizzaSix");
-        Pizza pizzaSeven = new Pizza(ingredientsSeven, true, 800, "pizzaSeven");
-        Pizza pizzaEight = new Pizza(ingredientsEight, false, 600, "pizzaEight");
-        Pizza pizzaNine = new Pizza(ingredientsNine, false, 500, "pizzaNine");
-        Pizza pizzaTen = new Pizza(ingredientsTen, true, 690, "pizzaTen");
-
-        List<Pizza> menu = Arrays.asList(pizzaOne, pizzaTwo, pizzaThree, pizzaFour, pizzaFive, pizzaSix, pizzaSeven,
-                pizzaEight, pizzaNine, pizzaTen);
+        List<Pizza> menu = generatePizzasForMenu();
 
         System.out.println("List of vegan pizzas:");
         printVegan(menu);
@@ -48,40 +14,89 @@ public class Menu {
         System.out.println("List of pizzas contains celery:");
         printContainsCelery(menu);
         System.out.println();
-        System.out.println("Is there a vegan pizza that contains tomato and pepper? " + checkIsVeganAndContainsTomatoAndPepper(menu));
+        System.out.println("Is there a vegan pizza that contains tomato and pepper? " + isVeganAndContainsTomatoAndPepper(menu));
         System.out.println();
-        System.out.println("Whether all dishes contain mozzarella? " + doesContainsMozzarella(menu));
+        System.out.println("Whether all dishes contain mozzarella? " + hasMozzarella(menu));
         System.out.println();
-        getPizzaWithHighestCalories(menu);
+        printPizzaWithHighestCalories(menu);
         System.out.println();
-        getPizzaWithLowestCalories(menu);
+        printPizzaWithLowestCalories(menu);
     }
 
-    public static void printVegan(List<Pizza> menu) {
-        Stream<Pizza> pizzaStream = menu.stream();
-        pizzaStream.filter(pizza -> pizza.isVegan())
-                .forEach(pizza -> System.out.println(pizza.getName()));
+    private static List<Pizza> generatePizzasForMenu() {
+        List<Ingredient> ingredientOne = Arrays.asList(Ingredient.ONION, Ingredient.MOZZARELLA,
+                Ingredient.TOMATO);
+        List<Ingredient> ingredientTwo = Arrays.asList(Ingredient.SALAMI, Ingredient.MOZZARELLA,
+                Ingredient.TOMATO);
+        List<Ingredient> ingredientThree = Arrays.asList(Ingredient.CELERY, Ingredient.MOZZARELLA,
+                Ingredient.TOMATO);
+        List<Ingredient> ingredientFour = Arrays.asList(Ingredient.ONION, Ingredient.MOZZARELLA,
+                Ingredient.TOMATO, Ingredient.MUSHROOMS);
+        List<Ingredient> ingredientFive = Arrays.asList(Ingredient.ONION, Ingredient.MOZZARELLA,
+                Ingredient.TOMATO, Ingredient.CELERY);
+        List<Ingredient> ingredientSixes = Arrays.asList(Ingredient.ONION, Ingredient.MOZZARELLA,
+                Ingredient.TOMATO, Ingredient.PEPPERS);
+        List<Ingredient> ingredientSeven = Arrays.asList(Ingredient.ONION, Ingredient.MOZZARELLA,
+                Ingredient.TOMATO, Ingredient.PEPPERS, Ingredient.MUSHROOMS);
+        List<Ingredient> ingredientEight = Arrays.asList(Ingredient.SALAMI, Ingredient.MOZZARELLA,
+                Ingredient.TOMATO, Ingredient.PEPPERS);
+        List<Ingredient> ingredientNine = Arrays.asList(Ingredient.SALAMI, Ingredient.CELERY,
+                Ingredient.TOMATO);
+        List<Ingredient> ingredientTen = Arrays.asList(Ingredient.MUSHROOMS, Ingredient.MOZZARELLA,
+                Ingredient.TOMATO);
+
+        Pizza pizzaOne = new Pizza(ingredientOne, true, 550, "pizzaOne");
+        Pizza pizzaTwo = new Pizza(ingredientTwo, false, 480, "pizzaTwo");
+        Pizza pizzaThree = new Pizza(ingredientThree, true, 750, "pizzaThree");
+        Pizza pizzaFour = new Pizza(ingredientFour, true, 620, "pizzaFour");
+        Pizza pizzaFive = new Pizza(ingredientFive, true, 370, "pizzaFive");
+        Pizza pizzaSix = new Pizza(ingredientSixes, true, 920, "pizzaSix");
+        Pizza pizzaSeven = new Pizza(ingredientSeven, true, 800, "pizzaSeven");
+        Pizza pizzaEight = new Pizza(ingredientEight, false, 600, "pizzaEight");
+        Pizza pizzaNine = new Pizza(ingredientNine, false, 500, "pizzaNine");
+        Pizza pizzaTen = new Pizza(ingredientTen, true, 690, "pizzaTen");
+
+        return Arrays.asList(pizzaOne, pizzaTwo, pizzaThree, pizzaFour, pizzaFive, pizzaSix, pizzaSeven,
+                pizzaEight, pizzaNine, pizzaTen);
     }
 
-    public static void printContainsCelery(List<Pizza> menu) {
-        Stream<Pizza> pizzaStream = menu.stream();
-        pizzaStream.filter(pizza -> pizza.getIngredients().contains(Ingredients.CELERY))
-                .forEach(pizza -> System.out.println(pizza.getName()));
+    private static void printVegan(List<Pizza> menu) {
+        menu.stream()
+                .filter(Pizza::isVegan)
+                .map(Pizza::getName)
+                .forEach(System.out::println);
     }
 
-    public static boolean checkIsVeganAndContainsTomatoAndPepper(List<Pizza> menu) {
-        Stream<Pizza> pizzaStream = menu.stream();
-        return pizzaStream.filter(pizza -> pizza.isVegan() && pizza.getIngredients().contains(Ingredients.TOMATO) && pizza.getIngredients().contains(Ingredients.PEPPERS))
-                .count() > 0;
+    private static void printContainsCelery(List<Pizza> menu) {
+        menu.stream()
+                .filter(pizza -> pizza.getIngredients().contains(Ingredient.CELERY))
+                .map(Pizza::getName)
+                .forEach(System.out::println);
     }
 
-    public static boolean doesContainsMozzarella(List<Pizza> menu) {
-        Stream<Pizza> pizzaStream = menu.stream();
-        return pizzaStream.filter(pizza -> pizza.getIngredients().contains(Ingredients.MOZZARELLA))
-                .count() == menu.size();
+    private static boolean isVeganAndContainsTomatoAndPepper(List<Pizza> menu) {
+        return menu.stream()
+                .anyMatch(pizza -> pizza.isVegan() && containsTomato(pizza) && containsPeppers(pizza));
     }
 
-    public static void getPizzaWithHighestCalories(List<Pizza> menu) {
+    private static boolean containsPeppers(Pizza pizza) {
+        return pizza.getIngredients().contains(Ingredient.PEPPERS);
+    }
+
+    private static boolean containsTomato(Pizza pizza) {
+        return pizza.getIngredients().contains(Ingredient.TOMATO);
+    }
+
+    private static boolean hasMozzarella(List<Pizza> menu) {
+        return menu.stream()
+                .allMatch(Menu::containsMozzarella);
+    }
+
+    private static boolean containsMozzarella(Pizza pizza) {
+        return pizza.getIngredients().contains(Ingredient.MOZZARELLA);
+    }
+
+    private static void printPizzaWithHighestCalories(List<Pizza> menu) {
         Pizza maxCalories = menu
                 .stream()
                 .max(Comparator.comparing(Pizza::getCalories))
@@ -89,7 +104,7 @@ public class Menu {
         System.out.println("Pizza with highest calories is: " + maxCalories);
     }
 
-    public static void getPizzaWithLowestCalories(List<Pizza> menu) {
+    private static void printPizzaWithLowestCalories(List<Pizza> menu) {
         Pizza minCalories = menu
                 .stream()
                 .min(Comparator.comparing(Pizza::getCalories))
