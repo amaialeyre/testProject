@@ -11,10 +11,14 @@ public class Doctor {
         List<String> specializations = Arrays.asList("Szpital:Chirurg:Radiolog:Chirurg Szczękowy:Pediatra",
                 "Przychodnia:Pediatra", "Przychodnia:Internista:Laryngolog:Pediatra");
 
-        Set<String> uniqueSpecializations = specializations.stream()
+        Set<String> uniqueSpecializations = getUniqueSpecializations(specializations);
+        System.out.println(uniqueSpecializations);
+    }
+
+    private static Set<String> getUniqueSpecializations(List<String> specializations) {
+        return specializations.stream()
                 .flatMap(s -> Arrays.stream(s.split(":")))
                 .filter(s -> !s.equals("Szpital") && !s.equals("Przychodnia"))
                 .collect(Collectors.toSet());
-        System.out.println(uniqueSpecializations);
     }
 }
